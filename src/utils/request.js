@@ -17,6 +17,7 @@ export const request = axios.create(
 request.interceptors.request.use(
     function(request) {
         // 在发送请求之前做些什么
+        console.log(request)
         return request;
     },
     function(error) {
@@ -27,7 +28,7 @@ request.interceptors.request.use(
 ); 
 
 // 响应拦截器
-request.interceptors.request.use(
+request.interceptors.response.use(
     function(response) {
         /*
             2xx 范围内的状态码都会触发该函数。
@@ -42,4 +43,4 @@ request.interceptors.request.use(
         */
         return Promise.reject(error);
     }
-); 
+);

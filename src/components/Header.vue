@@ -3,14 +3,44 @@
 </script>
 
 <template>
-    <div id="top">
-        <h1>全局头部文件</h1>
+    <div class="top">
+        <div class="left">
+            <!--网站头像 + 网站名称-->
+            <div><img src="../assets/vue.svg" alt/></div>
+            <span>小米星球</span>
+        </div>
+        <div class="middle">
+            <span>导航栏</span>
+        </div>
+        <div class="right">
+            <!--已登录: 用户头像 + 注销-->
+            <!--未登录: 登录 + 注册-->
+            <span>用户信息</span>
+        </div>
     </div>
 </template>
 
 <style scoped>
-    #top{
-        background: black;
+    .top{
+        background: white;
+        display: flex;
+        align-items: center;
     }
+    .left{
+        background: green;
+        height: 100px;
+        width: 300px;
+    }
+    .middle{
+        background: black;
+        height: 100px;
+        width: 2000px;
+    }
+    .right{
+        background: green;
+        height: 100px;
+        width: 400px;
+    }
+    
 
 </style>
