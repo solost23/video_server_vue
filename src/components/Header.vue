@@ -32,7 +32,7 @@
         width: 300px;
     }
     .middle{
-        background: black;
+        background: white;
         height: 100px;
         width: 2000px;
     }
