@@ -1,8 +1,9 @@
 <script setup>
     import { getVideoInfo } from "../api/video.js"
     import { ref } from "@vue/reactivity"
-    import { useRouter } from "vue-router"
+    import { useRoute, useRouter } from "vue-router"
 
+    let route = useRoute()
     let router = useRouter()
     let token = localStorage.getItem("token")
     if (token === "" || token === null) {

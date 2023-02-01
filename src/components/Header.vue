@@ -33,7 +33,7 @@
         <div class="right">
             <!--已登录: 用户头像 + 注销-->
             <!-- 未登录: 登录 + 注册 -->
-            <span>用户信息</span>
+            <!-- <span>用户信息</span> -->
             <button @click="handleLogout">注销</button>
         </div>
     </div>
