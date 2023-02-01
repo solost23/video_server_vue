@@ -1,10 +1,9 @@
 <script setup>
     import { getVideoInfo } from "../api/video.js"
     import { ref } from "@vue/reactivity"
-    import { useRoute } from "vue-router"
-import { onMounted } from "@vue/runtime-core"
+    import { useRouter } from "vue-router"
 
-    let route = useRoute()
+    let router = useRouter()
     let token = localStorage.getItem("token")
     if (token === "" || token === null) {
         router.push(
@@ -24,6 +23,7 @@ import { onMounted } from "@vue/runtime-core"
         userId: 0, 
         userName: "",
         videoUrl: "", 
+        updatedAt: "", 
     })
 
     // 初始化视频数据
@@ -44,13 +44,17 @@ import { onMounted } from "@vue/runtime-core"
 
 <template>
     <div id="videoDetail">
-        <div class="videoTitle">
+        <div class="videoHead">
             <h3>{{ videoDetail.title }}</h3>
+            <br/>
+            <span>{{ videoDetail.updatedAt }}</span>
         </div>
         <div class="video"> 
             <video controls :src="videoDetail.videoUrl"></video>
         </div>
-        <div>
+        <div class="videoBottom">
+            <span>{{ videoDetail.thumbCount }}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ videoDetail.commentCount }}</span>
+            <hr/>
             <p>{{ videoDetail.introduce }}</p>
         </div>
     </div>
@@ -58,7 +62,7 @@ import { onMounted } from "@vue/runtime-core"
 
 <style scoped>
     video {
-        width: 650px;
-        height: 600px;
+        width: 750px;
+        height: auto;
     }
 </style>

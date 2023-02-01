@@ -1,5 +1,23 @@
 <script setup>
+    import { logout } from "../api/user.js"
+    import { useRouter } from "vue-router"
 
+    let router = useRouter()
+    function handleLogout() {
+        logout({ device: "web" }).then((response) => {
+            if (!response.success) {
+                console.log(response.message)
+                return 
+            }
+            localStorage.removeItem("token")
+            router.push(
+                {
+                    name: "login", 
+                }
+            )
+        })
+    }
+    
 </script>
 
 <template>
@@ -14,8 +32,9 @@
         </div>
         <div class="right">
             <!--已登录: 用户头像 + 注销-->
-            <!--未登录: 登录 + 注册-->
+            <!-- 未登录: 登录 + 注册 -->
             <span>用户信息</span>
+            <button @click="handleLogout">注销</button>
         </div>
     </div>
 </template>
