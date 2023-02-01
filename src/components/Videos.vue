@@ -46,6 +46,14 @@
         })
     }
     loadVideos()
+
+    function toVideoDetailPage(videoId) {
+        router.push(
+            {
+                path: `/videos/detail/${videoId}`, 
+            }
+        )
+    }
 </script>
 
 <template>
@@ -57,15 +65,8 @@
         <!-- 视频列表 -->
         <div class="videoList">
             <ul>
-               <li v-for="videoInfo in video.videoInfos" v-bind:key="videoInfo.id">
-                    <video controls>
-                        <source v-bind:src="videoInfo.imageUrl" type="video/webm"/>
-                        <source v-bind:src="videoInfo.videoUrl" type="video/mp4"/>
-                        Download the 
-                        <a :href="videoInfo.imageUrl">WEBM</a>
-                        or
-                        <a :href="videoInfo.videoUrl">MP4</a>
-                    </video>
+               <li v-for="videoInfo in video.videoInfos" v-bind:key="videoInfo.id" @click="toVideoDetailPage(videoInfo.id)">
+                    <video controls :src="videoInfo.videoUrl"></video>
                 </li> 
             </ul>
         </div>

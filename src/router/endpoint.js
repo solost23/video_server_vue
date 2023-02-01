@@ -19,7 +19,7 @@ const endpoint = createRouter({
             component: () => import("../components/Register.vue")
         }, 
         {
-            path: "/videos/detail//:orderId(\\d+)", 
+            path: "/videos/detail//:id(\\d+)", 
             name: "VideoDetail", 
             component: () => import("../components/VideoDetail.vue")
         }, 
