@@ -27,6 +27,11 @@ const endpoint = createRouter({
             path: "/:pathMatch(.*)*", 
             name: "NotFound", 
             component: () => import("../components/NotFound.vue")
+        }, 
+        {
+            path: "/videos/upload", 
+            name: "uploadVideo", 
+            component: () => import("../components/UploadVideo.vue")
         }
     ]
 })

@@ -17,6 +17,14 @@
             )
         })
     }
+
+    function toUploadVideo() {
+        router.push(
+            {
+                name: "uploadVideo", 
+            }
+        )
+    }
     
 </script>
 
@@ -29,6 +37,9 @@
         </div>
         <div class="middle">
             <span>导航栏</span>
+            <div class="uploadVideo">
+                <button @click="toUploadVideo">视频上传</button>
+            </div>
         </div>
         <div class="right">
             <!--已登录: 用户头像 + 注销-->
