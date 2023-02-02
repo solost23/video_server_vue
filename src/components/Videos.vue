@@ -66,7 +66,13 @@
         <div class="videoList">
             <ul>
                <li v-for="videoInfo in video.videoInfos" v-bind:key="videoInfo.id" @click="toVideoDetailPage(videoInfo.id)">
-                    <video controls :src="videoInfo.videoUrl"></video>
+                    <!-- <video controls :src="videoInfo.videoUrl"></video> -->
+                    <img :src="videoInfo.imageUrl"/>
+                    <br/>
+                    <div class="videoBaseInfo">
+                        <h3>{{ videoInfo.title }}</h3>
+                        <p>{{ videoInfo.introduce }}</p>
+                    </div>
                 </li> 
             </ul>
         </div>
@@ -78,8 +84,8 @@
         list-style-type: none;
         background: green;
     }
-    video {
-        width: 250px;
+    img {
+        width: 200px;
         height: 200px; 
     }
 </style>

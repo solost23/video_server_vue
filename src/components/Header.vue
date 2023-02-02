@@ -36,7 +36,7 @@
             <span>小米星球</span>
         </div>
         <div class="middle">
-            <span>导航栏</span>
+            <!-- <span>导航栏</span> -->
             <div class="uploadVideo">
                 <button @click="toUploadVideo">视频上传</button>
             </div>
@@ -57,7 +57,7 @@
         align-items: center;
     }
     .left{
-        background: green;
+        /* background: green; */
         height: 100px;
         width: 300px;
     }
@@ -67,7 +67,7 @@
         width: 2000px;
     }
     .right{
-        background: green;
+        /* background: green; */
         height: 100px;
         width: 400px;
     }
