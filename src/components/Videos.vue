@@ -66,11 +66,11 @@
         <div class="videoList">
             <ul>
                <li v-for="videoInfo in video.videoInfos" v-bind:key="videoInfo.id" @click="toVideoDetailPage(videoInfo.id)">
-                    <video controls :src="videoInfo.videoUrl"></video>
-                    <!-- <img :src="videoInfo.imageUrl"/> -->
+                    <!-- <video controls :src="videoInfo.videoUrl"></video> -->
+                    <img :src="videoInfo.imageUrl"/>
                     <br/>
                     <div class="videoBaseInfo">
-                        <h3>{{ videoInfo.title }}</h3>
+                        <strong>{{ videoInfo.title }}</strong>
                         <p>{{ videoInfo.introduce }}</p>
                     </div>
                 </li> 
@@ -80,12 +80,21 @@
 </template>
 
 <style scoped>
-    ul {
-        list-style-type: none;
-        background: green;
+    ul{
+        max-width: 100%;
+        display: flex;
+        flex-wrap:wrap;
+        list-style: none;
     }
-    img {
-        width: 200px;
-        height: 200px; 
+    li{
+        width: 300px;
+        height: 200px;
+    }
+    img{
+        width: 100px;
+        height: auto;
+    }
+    p{
+        margin-top: 0px;
     }
 </style>
