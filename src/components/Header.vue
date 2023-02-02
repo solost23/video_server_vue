@@ -1,6 +1,7 @@
 <script setup>
     import { logout } from "../api/user.js"
     import { useRouter } from "vue-router"
+    import { getUserInfo } from "../api/user"
 
     let router = useRouter()
     function handleLogout() {
@@ -18,10 +19,22 @@
         })
     }
 
+    function loadUserInfo() {
+        
+    }
+
     function toUploadVideo() {
         router.push(
             {
                 name: "uploadVideo", 
+            }
+        )
+    }
+
+    function toIndex() {
+        router.push(
+            {
+                name: "main", 
             }
         )
     }
@@ -30,7 +43,7 @@
 
 <template>
     <div class="top">
-        <div class="left">
+        <div class="left" @click="toIndex">
             <!--网站头像 + 网站名称-->
             <div><img src="../assets/vue.svg" alt/></div>
             <span>小米星球</span>
@@ -45,6 +58,7 @@
             <!--已登录: 用户头像 + 注销-->
             <!-- 未登录: 登录 + 注册 -->
             <!-- <span>用户信息</span> -->
+            <div><img src="../assets/vue.svg" alt/></div>
             <button @click="handleLogout">注销</button>
         </div>
     </div>

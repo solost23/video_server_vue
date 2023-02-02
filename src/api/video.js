@@ -34,6 +34,9 @@ export function createVideoInfo(data) {
             url: "/api/videos", 
             method: "post", 
             data: data, 
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
         }
     )
 }
@@ -44,6 +47,9 @@ export function uploadVideo(data) {
             url: "/api/videos/vid", 
             method: "post", 
             data: data, 
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
         }
     )
 }
@@ -54,6 +60,9 @@ export function uploadImage(data) {
             url: "/api/videos/img", 
             method: "post", 
             data: data, 
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
         }
     )
 }

@@ -24,6 +24,7 @@
                     }
                     // 将用户信息放入本地存储
                     localStorage.setItem("user", response.data)
+                    localStorage.setItem("user_id", response.data.ID)
                     localStorage.setItem("token", response.data.token)
 
                     // 跳转路由, 使用path也可以
