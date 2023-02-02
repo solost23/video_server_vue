@@ -80,8 +80,8 @@
     <div class="top">
         <div class="left" @click="toIndex">
             <!--网站头像 + 网站名称-->
-            <div><img src="../assets/vue.svg" alt/></div>
-            <span>小米星球</span>
+            <div><img class="icon" src="../assets/circled-play.png" alt/></div>
+            <!-- <span>小米星球</span> -->
         </div>
         <div class="middle">
             <!-- <span>导航栏</span> -->
@@ -98,7 +98,7 @@
             <div class="login" v-else>
                 <div>
                     <div><img class="avatar" v-bind:src="userInfo.avatar" alt/></div>
-                    <div><strong>{{ userInfo.user_name }}</strong></div>
+                    <!-- <div><strong>{{ userInfo.user_name }}</strong></div> -->
                 </div>
                 <div><button class="logout" @click="handleLogout">注销</button></div>
             </div>
@@ -122,6 +122,10 @@
         height: 100px;
         width: 2000px;
     }
+    .icon{
+        width: 100px;
+        height: 100px;
+    }
     .uploadVideo{
         margin-top: 15px;
     }
@@ -131,6 +135,7 @@
         width: 400px;
     }
     .avatar{
+        margin-top: 15px;
         width: 50px;
         height: 50px;
     }
