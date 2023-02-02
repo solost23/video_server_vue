@@ -37,3 +37,23 @@ export function createVideoInfo(data) {
         }
     )
 }
+
+export function uploadVideo(data) {
+    return request(
+        {
+            url: "/api/videos/vid", 
+            method: "post", 
+            data: data, 
+        }
+    )
+}
+
+export function uploadImage(data) {
+    return request(
+        {
+            url: "/api/videos/img", 
+            method: "post", 
+            data: data, 
+        }
+    )
+}

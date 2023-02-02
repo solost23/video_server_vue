@@ -66,8 +66,8 @@
         <div class="videoList">
             <ul>
                <li v-for="videoInfo in video.videoInfos" v-bind:key="videoInfo.id" @click="toVideoDetailPage(videoInfo.id)">
-                    <!-- <video controls :src="videoInfo.videoUrl"></video> -->
-                    <img :src="videoInfo.imageUrl"/>
+                    <video controls :src="videoInfo.videoUrl"></video>
+                    <!-- <img :src="videoInfo.imageUrl"/> -->
                     <br/>
                     <div class="videoBaseInfo">
                         <h3>{{ videoInfo.title }}</h3>

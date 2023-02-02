@@ -6,7 +6,7 @@ export const request = axios.create(
         withCredentials: true, // 异步请求携带cookie
         headers: {
             // 设置后端需要的传参类型
-            "Content-Type": "application/json", 
+            "Content-Type": "application/json;multipart/form-data", 
             "token": localStorage.getItem("token") || "", 
             "X-Requested-With": "XMLHttpRequest", 
         }
@@ -44,3 +44,5 @@ request.interceptors.response.use(
         return Promise.reject(error);
     }
 );
+
+// 
