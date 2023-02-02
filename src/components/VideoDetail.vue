@@ -54,7 +54,7 @@
             <video controls :src="videoDetail.videoUrl"></video>
         </div>
         <div class="videoBottom">
-            <span>{{ videoDetail.thumbCount }}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ videoDetail.commentCount }}</span>
+            <span><img class="thumb" src="../assets/thumb.png" alt/>{{ videoDetail.thumbCount }}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span><img class="comment" src="../assets/comment.png" alt/>{{ videoDetail.commentCount }}</span>
             <hr/>
             <p>{{ videoDetail.introduce }}</p>
         </div>
@@ -65,5 +65,13 @@
     video {
         width: 750px;
         height: auto;
+    }
+    .thumb{
+        width: 30px;
+        height: 30px;
+    }
+    .comment{
+        width: 30px;
+        height: 30px;
     }
 </style>
