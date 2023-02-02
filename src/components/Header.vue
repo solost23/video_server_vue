@@ -2,8 +2,18 @@
     import { logout } from "../api/user.js"
     import { useRouter } from "vue-router"
     import { getUserInfo } from "../api/user"
+    import { ref } from "@vue/reactivity"
 
     let router = useRouter()
+
+    let isLogin = ref(false)
+
+    let userInfo = ref({
+        user_name: "", 
+        nickname: "", 
+        avatar: "", 
+    })
+
     function handleLogout() {
         logout({ device: "web" }).then((response) => {
             if (!response.success) {
@@ -20,8 +30,17 @@
     }
 
     function loadUserInfo() {
-        
+        let userId = localStorage.getItem("user_id")
+        getUserInfo(userId).then((response) => {
+            if (!response.success) {
+                return 
+            }
+            isLogin.value = true
+            userInfo.value = response.data
+        })
+
     }
+    loadUserInfo()
 
     function toUploadVideo() {
         router.push(
@@ -35,6 +54,22 @@
         router.push(
             {
                 name: "main", 
+            }
+        )
+    }
+
+    function toLoginPage() {
+        router.push(
+            {
+                name: "login", 
+            }
+        )
+    }
+
+    function toRegisterPage() {
+        router.push(
+            {
+                name: "register", 
             }
         )
     }
@@ -55,11 +90,18 @@
             </div>
         </div>
         <div class="right">
-            <!--已登录: 用户头像 + 注销-->
-            <!-- 未登录: 登录 + 注册 -->
-            <!-- <span>用户信息</span> -->
-            <div><img src="../assets/vue.svg" alt/></div>
-            <button @click="handleLogout">注销</button>
+            <div class="isNotLogin" v-if="!isLogin">
+                <button @click="toLoginPage">登录</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <button @click="toRegisterPage">注册</button>
+            </div>
+            <div class="login" v-else>
+                <div>
+                    <div><img class="avatar" v-bind:src="userInfo.avatar" alt/></div>
+                    <div><strong>{{ userInfo.user_name }}</strong></div>
+                </div>
+                <div><button class="logout" @click="handleLogout">注销</button></div>
+            </div>
         </div>
     </div>
 </template>
@@ -80,10 +122,24 @@
         height: 100px;
         width: 2000px;
     }
+    .uploadVideo{
+        margin-top: 15px;
+    }
     .right{
         /* background: green; */
         height: 100px;
         width: 400px;
+    }
+    .avatar{
+        width: 50px;
+        height: 50px;
+    }
+    .login{
+        display: flex;
+    }
+    .logout{
+        margin-left: 20px;
+        margin-top: 15px;
     }
     
 
