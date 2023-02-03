@@ -48,7 +48,7 @@
         <div class="videoHead">
             <h3>{{ videoDetail.title }}</h3>
             <br/>
-            <span>{{ videoDetail.updatedAt }}</span>
+            <span>视频创建时间{{ videoDetail.updatedAt }}</span>
         </div>
         <div class="video"> 
             <video controls :src="videoDetail.videoUrl"></video>
