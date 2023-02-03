@@ -1,5 +1,6 @@
 <script setup>
     import { getVideos } from "../api/video.js"
+    import { getCategoryies } from "../api/category.js"
     import { useRouter } from "vue-router"
     import { ref } from "@vue/reactivity"
 
@@ -13,6 +14,14 @@
             }
         )
     }
+
+    let categories = ref([
+        {
+            id: 0, 
+            title: "",
+            introduce: "", 
+        }
+    ])
 
     let video = ref({
         keyword: "", 
@@ -32,6 +41,19 @@
             }
         ], 
     })
+
+    // 初始化分类列表
+    let loadCategories = function loadCategories() {
+        getCategoryies().then((response) => {
+            if (!response.success) {
+                alert(response.message)
+                return 
+            }
+            // 拿到数据，展示
+            categories.value = response.data.records
+        })
+    }
+    loadCategories()
 
     // 初始化视频列表数据
     let loadVideos = function loadVideos() {
@@ -58,9 +80,14 @@
 
 <template>
     <div id="index">
-        <!-- 放个搜索框 -->
-        <div class="search">
-            <input type="text" placeholder="搜索" v-model="video.keyword" @keyup.enter="loadVideos"/>
+        <div>
+            <div>
+                <button v-for="category in categories" v-bind:key="category.id" @click="handleGetVideoByCategoryId(category.id)">{{ category.name }}</button>
+            </div>
+            <!-- 放个搜索框 -->
+            <div class="search">
+                <input type="text" placeholder="搜索" v-model="video.keyword" @keyup.enter="loadVideos"/>
+            </div>
         </div>
         <!-- 视频列表 -->
         <div class="videoList">
