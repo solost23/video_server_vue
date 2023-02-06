@@ -17,5 +17,13 @@ import Footer from "./components/Footer.vue"
 </template>
 
 <style scoped>
-
+  /* .top{
+    background: green;
+  }
+  .body{
+    background: red;
+  }
+  .bottom{
+    background: blue;
+  } */
 </style>

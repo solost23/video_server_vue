@@ -1,15 +1,20 @@
 <script setup>
-    import { register } from "../api/user.js"
+    import { register, uploadAvatar } from "../api/user.js"
     import { useRouter } from "vue-router"
     import { ref } from "@vue/reactivity"
     let router = useRouter()
     let user = ref(
         {
-            msg: "", 
             username: "", 
             password: "", 
+            nickname: "",
+            role: "USER",
+            avatar: "",
+            introduce: "", 
+            device: "web", 
         }
     )
+    let msg = ref("")
 
     function toLoginPage() {
         router.push(
@@ -23,12 +28,12 @@
         let username = user.value.username 
         let password = user.value.password
         if (username === "" || password === "") {
-            user.value.msg = "用户名或密码不为空"
+            msg.value = "用户名或密码不为空"
             return 
         }
-        register({ userName: username, password: password, device: "web", role: "USER"}).then((response) => {
+        register(user.value).then((response) => {
             if (!response.success) {
-                user.value.msg = response.message
+                msg.value = response.message
                 return 
             }
             // 跳转登录路由
@@ -40,6 +45,17 @@
         })
     }
 
+    function UploadImg(event) {
+        let file = event.target.files[0]
+        uploadAvatar({file: file}).then((response) => {
+            if (!response.success) {
+                msg.value = response.message
+                return 
+            }
+            user.value.avatar = response.data
+        })
+    }
+
 </script>
 
 <template>
@@ -48,6 +64,21 @@
             <tr>
                 <th>账号:</th>
                 <td><input type="text" placeholder="请输入账号" v-model="user.username"/></td>
+            </tr>
+            <tr>
+                <!-- 昵称 -->
+                <th>昵称</th>
+                <td><input type="text" placeholder="请输入昵称" v-model="user.nickname"/></td>
+            </tr>
+            <tr>
+                <!-- 头像 -->
+                <th>头像</th>
+                <td><input ref="input" type="file" @change="UploadImg"/></td>
+            </tr>
+            <tr>
+                <!-- 介绍 -->
+                <th>介绍</th>
+                <td><textarea v-model="user.introduce"></textarea></td>
             </tr>
             <tr>
                 <th>密码:</th>

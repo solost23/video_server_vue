@@ -39,3 +39,16 @@ export function getUserInfo(id) {
         }
     )
 }
+
+export function uploadAvatar(data) {
+    return request(
+        {
+            url: "/api/register/avatar", 
+            method: "post", 
+            data: data, 
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        }
+    )
+}
