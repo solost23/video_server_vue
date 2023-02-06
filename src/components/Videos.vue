@@ -1,5 +1,5 @@
 <script setup>
-    import { getVideos } from "../api/video.js"
+    import { getVideos, getVideosByParams } from "../api/video.js"
     import { getCategoryies } from "../api/category.js"
     import { useRouter } from "vue-router"
     import { ref } from "@vue/reactivity"
@@ -18,9 +18,9 @@
     let categories = ref([
         {
             id: 0, 
-            title: "",
-            introduce: "", 
-        }
+            title: "全部",
+            introduce: "全部", 
+        }, 
     ])
 
     let video = ref({
@@ -76,13 +76,24 @@
             }
         )
     }
+
+    function handleGetVideoByCategoryId(categoryId) {
+        // 请求接口
+        getVideosByParams({categoryId: categoryId, page: 1, size: 50}).then((response) => {
+            if (!response.success) {
+                alert(response.message)
+                return 
+            }
+            video.value.videoInfos = response.data.records
+        }) 
+    }
 </script>
 
 <template>
     <div id="index">
         <div>
-            <div>
-                <button v-for="category in categories" v-bind:key="category.id" @click="handleGetVideoByCategoryId(category.id)">{{ category.name }}</button>
+            <div class="categories">
+                <button v-for="category in categories" v-bind:key="category.id" @click="handleGetVideoByCategoryId(category.id)">{{ category.title }}</button>
             </div>
             <!-- 放个搜索框 -->
             <div class="search">
@@ -123,5 +134,8 @@
     }
     p{
         margin-top: 0px;
+    }
+    button{
+        margin-left: 5px;
     }
 </style>

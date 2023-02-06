@@ -66,3 +66,14 @@ export function uploadImage(data) {
         }
     )
 }
+
+// 根据条件查询视频列表
+export function getVideosByParams(params) {
+    return request (
+        {
+            url:"/api/videos", 
+            method: "get", 
+            params: params, 
+        }
+    )
+}
