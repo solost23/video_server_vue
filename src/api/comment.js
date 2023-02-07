@@ -9,3 +9,13 @@ export function getComments(params) {
         }
     )
 }
+
+export function createComment(data) {
+    return request(
+        {
+            url: "/api/comments", 
+            method: "post", 
+            data: data, 
+        }
+    )
+}

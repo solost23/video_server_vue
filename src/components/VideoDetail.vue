@@ -1,6 +1,6 @@
 <script setup>
     import { getVideoInfo } from "../api/video.js"
-    import { getComments } from "../api/comment.js"
+    import { getComments, createComment } from "../api/comment.js"
     import { ref } from "@vue/reactivity"
     import { useRoute, useRouter } from "vue-router"
 
@@ -69,6 +69,22 @@
         })
     }
     loadComments()
+
+    function handleCreateComment(event) {
+        let postComment = {
+            videoId: videoDetail.value.id, 
+            content: event.target.value,
+            parentId: 0, 
+            iSThumb: "ISCOMMENT" 
+        }
+        createComment(postComment).then((response) => {
+            if (!response.success) {
+                console.log(response.message)
+                return 
+            }
+            loadComments()
+        })
+    }
 </script>
 
 <template>
@@ -87,12 +103,19 @@
             <p>{{ videoDetail.introduce }}</p>
         </div>
         <div class="comment">
-            <div>
-                <img v-bind:src="avatar" alt/>
-                <span>输入你的评论: </span><input type="text" />
+            <div class="selfComment">
+                <img  class="avatar" v-bind:src="avatar" alt/>
+                <input class="inputComment" type="text" placeholder="输入你的评论:" @keyup.enter="handleCreateComment($event)"/>
             </div>
             <div class="commentList">
                 <!-- 评论列表 -->
+                <h2>评论列表</h2>
+                <ul>
+                    <div class="commentContent" v-for="comment in commentList" v-bind:key="comment.id">
+                        <img class="avatar" v-bind:src="comment.creatorAvatar" alt/>
+                        <span>{{ comment.content }}</span>
+                    </div>
+                </ul>
             </div>
         </div>
     </div>
@@ -108,7 +131,17 @@
         height: 30px;
     }
     .comment{
-        width: 30px;
         height: 30px;
+    }
+    .selfComment{
+        display: flex;
+        height: 50px;
+    }
+    .avatar{
+        width: 50px;
+        height: 50px;
+    }
+    .inputComment{
+        margin-left: 5px;
     }
 </style>
